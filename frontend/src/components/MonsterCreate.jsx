@@ -28,7 +28,8 @@ function MonsterCreate() {
     };
 
     try {
-      await axios.post('http://localhost:8080/api/monsters', newMonster);
+        console.log("送信前のJSON文字列", JSON.stringify(newMonster, null, 2));
+        await axios.post('http://localhost:8080/api/monsters', newMonster);
       navigate('/');
     } catch (error) {
       console.error('作成に失敗しました', error);

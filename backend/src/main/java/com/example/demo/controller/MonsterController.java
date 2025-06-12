@@ -36,9 +36,16 @@ public class MonsterController {
 
     @PostMapping
     public void create(@RequestBody Monster monster) {
+    	// ステータスのみサーバ側でランダムに設定
         monster.setHp(random.nextInt(100) + 50);
         monster.setAttack(random.nextInt(20) + 10);
         monster.setSpeed(random.nextInt(30) + 5);
+        
+    	System.out.println("受け取ったモンスター: " + monster);
+    	System.out.println("skillName: " + monster.getSkillName());
+    	System.out.println("skillPower: " + monster.getSkillPower());
+    	System.out.println("skillAccuracy: " + monster.getSkillAccuracy());
+    	
         monsterMapper.insert(monster);
     }
 
