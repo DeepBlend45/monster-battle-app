@@ -19,10 +19,10 @@ function MonsterCreate() {
 
     const newMonster = {
       name,
-      hp: getRandomStat(100, 200),
-      attack: getRandomStat(40, 70),
-      defense: getRandomStat(30, 60),
-      speed: getRandomStat(10, 40),
+      hp: getRandomStat(200, 300),
+      attack: getRandomStat(50, 80),
+      defense: getRandomStat(70, 100),
+      speed: getRandomStat(50, 100),
       skillName,
       skillPower: parseInt(skillPower, 10),
       skillAccuracy: parseInt(skillAccuracy, 10)

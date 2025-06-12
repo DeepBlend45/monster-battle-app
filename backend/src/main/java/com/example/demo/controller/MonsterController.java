@@ -83,29 +83,40 @@ public class MonsterController {
 
         StringBuilder log = new StringBuilder();
         
-     // 0.85〜1.00の乱数を生成（double型）
-        double randomModifier = 0.85 + (Math.random() * 0.15);
-
-
+        int turn = 1;
         while (m1.getHp() > 0 && m2.getHp() > 0) {
+            log.append("【ターン ").append(turn).append("】\n");
+            log.append("実況: ").append(attacker.getName())
+               .append(" が行動に移ります！\n");
+
             if (random.nextInt(100) < attacker.getSkillAccuracy()) {
-                int damage = (int) Math.round((attacker.getAttack() + attacker.getSkillPower())/defender.getDefense() * randomModifier);
+            	double randomModifier = 0.85 + (Math.random() * 0.15);
+
+                int damage = (int) Math.round((attacker.getAttack() * attacker.getSkillPower()) / defender.getDefense() * randomModifier);
                 defender.setHp(defender.getHp() - damage);
-                log.append(attacker.getName()).append(" hits ")
-                   .append(defender.getName()).append(" for ").append(damage).append(" HP.\n");
+
+                log.append(attacker.getName()).append(" の ")
+                   .append(attacker.getSkillName()).append("！！\n");
+                log.append("効果はバツグンだ！ ").append(defender.getName())
+                   .append(" に ").append(damage).append(" ダメージ！\n");
             } else {
-                log.append(attacker.getName()).append(" missed!\n");
+                log.append(attacker.getName()).append(" の攻撃… しかし外れた！\n");
             }
 
-            if (defender.getHp() <= 0) break;
+            if (defender.getHp() <= 0) {
+                log.append("\n🎉 実況: ").append(defender.getName()).append(" はもう動けません！\n");
+                log.append("🎊 勝者は ").append(attacker.getName()).append(" です！！\n");
+                break;
+            }
 
-            // swap attacker and defender
+            // 入れ替え
             Monster tmp = attacker;
             attacker = defender;
             defender = tmp;
+            turn++;
         }
 
-        log.append("Winner: ").append(attacker.getName());
-        return log.toString();
+
+            return log.toString();
     }
 }
