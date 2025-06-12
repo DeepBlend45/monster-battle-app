@@ -8,6 +8,7 @@ public class Monster {
     private String name;
     private int hp;
     private int attack;
+    private int defense;
     private int speed;
     private String skillName;
     private int skillPower;

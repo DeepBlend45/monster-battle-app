@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/monsters")  // APIのパスにマッチ
+        registry.addMapping("/api/**")  // APIのパスにマッチ
                 .allowedOrigins("http://localhost:3000")  // フロントのURL
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")

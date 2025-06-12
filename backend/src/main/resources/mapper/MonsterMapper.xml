@@ -12,8 +12,8 @@
   </select>
 
   <insert id="insert" parameterType="com.example.demo.model.Monster">
-    INSERT INTO monster (name, hp, attack, speed, skill_name, skill_power, skill_accuracy)
-    VALUES (#{name}, #{hp}, #{attack}, #{speed}, #{skillName}, #{skillPower}, #{skillAccuracy})
+    INSERT INTO monster (name, hp, attack, defense, speed, skill_name, skill_power, skill_accuracy)
+    VALUES (#{name}, #{hp}, #{attack}, #{defense}, #{speed}, #{skillName}, #{skillPower}, #{skillAccuracy})
   </insert>
 
   <update id="update" parameterType="com.example.demo.model.Monster">
@@ -21,6 +21,7 @@
       name = #{name},
       hp = #{hp},
       attack = #{attack},
+      defense = #{defense},
       speed = #{speed},
       skill_name = #{skillName},
       skill_power = #{skillPower},

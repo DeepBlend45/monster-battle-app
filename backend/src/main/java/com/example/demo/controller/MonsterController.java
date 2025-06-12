@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +38,9 @@ public class MonsterController {
     @PostMapping
     public void create(@RequestBody Monster monster) {
     	// ステータスのみサーバ側でランダムに設定
-        monster.setHp(random.nextInt(100) + 50);
-        monster.setAttack(random.nextInt(20) + 10);
-        monster.setSpeed(random.nextInt(30) + 5);
+//        monster.setHp(random.nextInt(100) + 50);
+//        monster.setAttack(random.nextInt(20) + 10);
+//        monster.setSpeed(random.nextInt(30) + 5);
         
     	System.out.println("受け取ったモンスター: " + monster);
     	System.out.println("skillName: " + monster.getSkillName());
@@ -49,6 +50,18 @@ public class MonsterController {
         monsterMapper.insert(monster);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Monster> getMonsterById(@PathVariable Long id) {
+    	Monster monster = monsterMapper.findById(id);
+    	if (monster != null) {
+    	    return ResponseEntity.ok(monster);
+    	} else {
+    	    return ResponseEntity.notFound().build();
+    	}
+
+    }
+
+    
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Monster monster) {
         monster.setId(id);
@@ -69,10 +82,14 @@ public class MonsterController {
         Monster defender = attacker == m1 ? m2 : m1;
 
         StringBuilder log = new StringBuilder();
+        
+     // 0.85〜1.00の乱数を生成（double型）
+        double randomModifier = 0.85 + (Math.random() * 0.15);
+
 
         while (m1.getHp() > 0 && m2.getHp() > 0) {
             if (random.nextInt(100) < attacker.getSkillAccuracy()) {
-                int damage = attacker.getAttack() + attacker.getSkillPower();
+                int damage = (int) Math.round((attacker.getAttack() + attacker.getSkillPower())/defender.getDefense() * randomModifier);
                 defender.setHp(defender.getHp() - damage);
                 log.append(attacker.getName()).append(" hits ")
                    .append(defender.getName()).append(" for ").append(damage).append(" HP.\n");

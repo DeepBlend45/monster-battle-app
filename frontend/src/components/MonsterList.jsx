@@ -41,6 +41,7 @@ function MonsterList() {
               <TableCell>名前</TableCell>
               <TableCell>体力</TableCell>
               <TableCell>攻撃力</TableCell>
+              <TableCell>防御力</TableCell>
               <TableCell>素早さ</TableCell>
               <TableCell>技</TableCell>
               <TableCell>威力</TableCell>
@@ -54,6 +55,7 @@ function MonsterList() {
                 <TableCell>{monster.name}</TableCell>
                 <TableCell>{monster.hp}</TableCell>
                 <TableCell>{monster.attack}</TableCell>
+                <TableCell>{monster.defense}</TableCell>
                 <TableCell>{monster.speed}</TableCell>
                 <TableCell>{monster.skillName}</TableCell>
                 <TableCell>{monster.skillPower}</TableCell>

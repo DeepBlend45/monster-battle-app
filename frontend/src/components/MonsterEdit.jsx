@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Box, TextField, Button, Typography, Paper
+   TextField, Button, Typography, Paper
 } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -11,6 +11,7 @@ function MonsterEdit() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("モンスター取得開始 ID:", id);
     axios.get(`http://localhost:8080/api/monsters/${id}`)
       .then((res) => setMonster(res.data))
       .catch((err) => console.error('取得に失敗しました', err));

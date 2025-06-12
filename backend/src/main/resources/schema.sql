@@ -3,6 +3,7 @@ CREATE TABLE monster (
   name VARCHAR(50),
   hp INT,
   attack INT,
+  defense INT,
   speed INT,
   skill_name VARCHAR(50),
   skill_power INT,
